@@ -1,0 +1,75 @@
+---
+description: Paradigm migration and adoption guides
+alwaysApply: false
+---
+
+# Migration Guide
+
+## Scenario A: Greenfield (New Project)
+
+Use `/paradigm-init` for:
+- New projects with no existing code
+- Starting from scratch
+
+**Steps**:
+1. Run `/paradigm-init` in empty project directory
+2. Answer 5 questions (project name, type, tech stack, etc.)
+3. AI auto-executes 7-step initialization
+4. Review and commit initial setup
+
+## Scenario B: Brownfield (Existing Project)
+
+Use `/paradigm-adopt` for:
+- Legacy projects adopting CursorHarness
+- Gradual migration per module
+
+**Steps**:
+1. Run `/paradigm-adopt` in project root
+2. AI audits current structure
+3. Select modules to adopt (confirm each)
+4. Per-module migration with verification
+5. Update documentation
+
+## Scenario C: Sync Template Updates
+
+Use `/paradigm-sync` for:
+- Projects already using CursorHarness
+- Getting latest template improvements
+
+**Steps**:
+1. Run `/paradigm-sync`
+2. AI compares local vs template version
+3. Review changes (tiered report)
+4. Select changes to apply
+5. Auto-merge non-breaking changes
+6. Manual review for breaking changes
+
+## Manual Migration Checklist
+
+If commands not available:
+
+1. **Copy template files**:
+   - `.cursor/` directory
+   - `docs/standards/`
+   - `AGENTS.md`, `STATE.md`
+
+2. **Adapt to project**:
+   - Update `AGENTS.md` project name/description
+   - Adjust `02-code-style.mdc` for your stack
+   - Update `00-project-overview.mdc`
+
+3. **Configure Hooks**:
+   - Ensure `jq` is installed for JSON parsing
+   - Make scripts executable: `chmod +x .cursor/hooks/*.sh`
+   - Test with sample commands
+
+4. **Initialize state**:
+   - Create `docs/private/state/wip.md`
+   - Create `docs/private/state/handoff.md`
+   - Update `STATE.md` with initial status
+
+5. **First commit**:
+   ```bash
+   git add .
+   git commit -m "feat: init CursorHarness paradigm"
+   ```

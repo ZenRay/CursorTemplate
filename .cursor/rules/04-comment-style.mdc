@@ -1,0 +1,82 @@
+---
+description: Code comment and documentation standards
+globs: "**/*.{ts,tsx,js,jsx,py,go,rs,sh}"
+alwaysApply: false
+---
+
+# Comment Style
+
+## Language
+- **English** for all code comments and docstrings
+- Use Chinese only if English causes ambiguity
+
+## Principles
+1. **Why**, not what — Explain intent, not mechanics
+2. **Context**, not narration — Business logic over code flow
+3. **Fresh**, not stale — Update or delete outdated comments
+
+## Docstrings
+
+### TypeScript/JavaScript
+```typescript
+/**
+ * Calculate user subscription discount
+ * @param userId - User identifier
+ * @param planType - Subscription tier (basic/pro/enterprise)
+ * @returns Discount percentage (0-100)
+ * @throws {NotFoundError} If user doesn't exist
+ */
+function calculateDiscount(userId: string, planType: PlanType): number
+```
+
+### Python
+```python
+def calculate_discount(user_id: str, plan_type: PlanType) -> int:
+    """
+    Calculate user subscription discount.
+    
+    Args:
+        user_id: User identifier
+        plan_type: Subscription tier (basic/pro/enterprise)
+    
+    Returns:
+        Discount percentage (0-100)
+    
+    Raises:
+        NotFoundError: If user doesn't exist
+    """
+```
+
+## Bad Comments (Avoid)
+```typescript
+// ❌ Bad - Narrates obvious code
+let count = 0; // Initialize counter to zero
+
+// ❌ Bad - States what, not why
+if (user.isActive) { // Check if user is active
+
+// ❌ Bad - Outdated/stale
+// TODO: Fix this later (from 2 years ago)
+```
+
+## Good Comments
+```typescript
+// ✅ Good - Explains business logic
+// Users with >12 months tenure get automatic upgrade eligibility
+
+// ✅ Good - Documents workarounds
+// HACK: API v2 returns dates in inconsistent formats, normalize here
+// Reference: JIRA-1234
+
+// ✅ Good - Explains constraints
+// Must retry within 30s window to maintain session consistency
+```
+
+## Shell Scripts
+```bash
+#!/bin/bash
+# .cursor/hooks/security-gate.sh
+# Tier 1 (T1) - Security: PreToolUse / beforeShellExecution
+# Blocks dangerous commands, prevents irreversible operations
+# Exit codes: 0 = pass, 2 = block
+```

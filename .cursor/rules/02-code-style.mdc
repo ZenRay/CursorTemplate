@@ -1,0 +1,56 @@
+---
+description: Language-specific code style guidelines
+globs: "**/*.{ts,tsx,js,jsx,py,go,rs}"
+alwaysApply: false
+---
+
+# Code Style
+
+## TypeScript / JavaScript
+
+### Naming
+- Components: `PascalCase.tsx` (e.g., `UserProfile.tsx`)
+- Hooks: `use-kebab-case.ts` (e.g., `use-auth.ts`)
+- Utilities: `kebab-case.ts` (e.g., `format-date.ts`)
+- Constants: `SCREAMING_SNAKE_CASE`
+- Booleans: `isLoading`, `hasError`, `canEdit` (verb prefix)
+- Event handlers: `handleClick`, `handleSubmit` (handle prefix)
+
+### Functions
+- Arrow functions for components: `const Component = () => {}`
+- Named exports (avoid default exports except pages/layouts)
+- Max 20 lines per function (extract if longer)
+- Early returns over nested conditionals
+
+### Types
+- Explicit return types for public functions
+- No `any` (use `unknown` + type guards)
+- Interface names: `ComponentNameProps`
+- Type definitions co-located or in `types/`
+
+## Python
+
+### Naming (PEP 8)
+- Modules: `snake_case.py`
+- Classes: `PascalCase`
+- Functions: `snake_case`
+- Constants: `SCREAMING_SNAKE_CASE`
+- Private: `_leading_underscore`
+
+### Structure
+- One class per file (mostly)
+- Max 50 lines per function
+- Type hints for function signatures
+- Docstrings for public APIs (Google style)
+
+## Go
+
+### Naming
+- Exported: `PascalCase`
+- Unexported: `camelCase`
+- Packages: `lowercase` (no underscores)
+
+### Structure
+- Interface names: `Reader`, `Writer` (not `IReader`)
+- One package per directory
+- Return errors as last value

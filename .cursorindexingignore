@@ -1,0 +1,43 @@
+# Cursor Harness Engineering - 索引软阻断
+# 此文件中的内容不自动索引，但可手动 @ 引用
+
+# 构建产物
+dist/
+build/
+.next/
+out/
+.output/
+
+# 依赖目录
+node_modules/
+__pycache__/
+.venv/
+venv/
+
+# 日志文件
+*.log
+logs/
+.coverage/
+
+# 大型生成文件
+*.min.js
+*.bundle.js
+*.map
+coverage/
+.nyc_output/
+
+# 锁文件（通常不需要 AI 分析）
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+poetry.lock
+Gemfile.lock
+composer.lock
+
+# 临时文件
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store

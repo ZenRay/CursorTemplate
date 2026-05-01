@@ -1,0 +1,49 @@
+# Cursor Harness Engineering - Git 忽略配置
+
+# Cursor 本地私有配置
+.cursor/settings.local.json
+.cursor/mcp.local.json
+
+# 会话草稿笔记（个人材料，不提交）
+.cursor/notes/*
+!.cursor/notes/.gitkeep
+
+# Hooks 运行日志（不提交）
+.cursor/logs/*
+!.cursor/logs/.gitkeep
+
+# 私有文档（不提交 Git）
+docs/private/*
+!docs/private/.gitkeep
+
+# 环境变量和密钥
+.env
+.env.*
+.env.local
+.env.production
+
+# 依赖目录
+node_modules/
+__pycache__/
+.venv/
+venv/
+
+# 构建产物
+dist/
+build/
+.next/
+out/
+
+# 日志
+*.log
+logs/
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store

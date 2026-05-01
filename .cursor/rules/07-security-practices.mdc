@@ -1,0 +1,88 @@
+---
+description: Security audit checklist and best practices
+alwaysApply: false
+---
+
+# Security Practices
+
+## Pre-Implementation Checklist
+
+For any feature involving:
+- Authentication / Authorization
+- User input handling
+- Database queries
+- API endpoints
+- File uploads
+
+**Review**:
+- [ ] Input validation on all user inputs
+- [ ] SQL injection prevention (parameterized queries)
+- [ ] XSS prevention (output encoding)
+- [ ] CSRF protection for state-changing operations
+- [ ] Rate limiting for sensitive endpoints
+- [ ] Proper error handling (no info leakage)
+
+## Common Vulnerabilities
+
+### SQL Injection
+```typescript
+// ❌ BAD
+const query = `SELECT * FROM users WHERE id = ${userId}`;
+
+// ✅ GOOD
+const query = 'SELECT * FROM users WHERE id = ?';
+db.query(query, [userId]);
+```
+
+### XSS (Cross-Site Scripting)
+```typescript
+// ❌ BAD
+element.innerHTML = userInput;
+
+// ✅ GOOD
+element.textContent = userInput;
+// Or use framework sanitization (React, Vue, etc.)
+```
+
+### Hardcoded Secrets
+```typescript
+// ❌ BAD
+const API_KEY = 'sk-1234567890abcdef';
+
+// ✅ GOOD
+const API_KEY = process.env.API_KEY;
+```
+
+## Security Audit Command
+
+Run `/review-hooks` with security focus:
+```
+/review-hooks
+Focus on security aspects:
+- Are hooks catching all dangerous patterns?
+- Any bypass possibilities?
+- False positives that might reduce security?
+```
+
+## Security-Aware SubAgent
+
+For security-critical changes, delegate to `security-audit` SubAgent:
+```
+Implement password reset flow, then delegate to @security-audit SubAgent
+for security review before finalizing.
+```
+
+## Secrets Management
+
+- Never commit secrets to Git
+- Use `.env` files (ignored by Git)
+- Rotate keys regularly
+- Use secret management in production (AWS Secrets Manager, etc.)
+
+## Incident Response
+
+If security issue found:
+1. Document in `docs/private/security-incident-YYYY-MM-DD.md`
+2. Fix immediately
+3. Update relevant hooks if pattern was missed
+4. Run `/archive-session` to document lessons learned

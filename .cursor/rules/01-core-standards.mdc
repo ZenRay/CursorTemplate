@@ -1,0 +1,35 @@
+---
+description: Core coding standards and safety guidelines
+alwaysApply: true
+---
+
+# Core Standards
+
+## Code Safety (Mandatory)
+- Always preview changes before editing config files (`.cursor/**`)
+- Never delete files without explicit user confirmation
+- Never force-push to `main` or `master` branches
+- Run `git status` and `git diff` before committing
+- Ask confirmation before `git commit` or `git push`
+
+## Documentation Language
+- Code comments and docstrings: **English** (use Chinese only if English causes ambiguity)
+- Public functions must have documentation comments (params, returns)
+- No obvious/narrative comments (e.g., "// Increment counter")
+
+## Prohibited Patterns
+- Commenting out dead code (delete it, Git has history)
+- `any` type in TypeScript (use `unknown` + type guards)
+- Direct console.log in production code (use proper logging)
+- Hardcoded secrets in source files
+
+## Git Discipline
+- Conventional Commits format: `<type>(<scope>): <subject>`
+- Types: `feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `style`
+- Small, single-purpose commits
+- Never skip hooks (`--no-verify`)
+
+## Hooks Compliance
+- All hooks in `.cursor/hooks/` must pass before proceeding
+- If hook fails, review and fix before continuing
+- Hook timeout: T1 (5-10s), T2 (10-30s), T3 (5s), T4 (10s)

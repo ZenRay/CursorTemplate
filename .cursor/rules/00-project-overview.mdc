@@ -1,0 +1,31 @@
+---
+description: Project overview and tech stack context
+alwaysApply: true
+---
+
+# Project Overview
+
+## Identity
+- **Project Name**: [Your Project Name]
+- **Tech Stack**: [e.g., Next.js 15 + TypeScript + Prisma + PostgreSQL]
+- **Project Type**: [code/docs/mixed]
+
+## Quick Navigation
+- Architecture: `@docs/context/architecture.md`
+- Current State: `@STATE.md`
+- WIP Tasks: `@docs/private/state/wip.md`
+- Last Handoff: `@docs/private/state/handoff.md`
+
+## File Scope
+- Source edits limited to: `./src/**` and `./tests/**`
+- Config edits require confirmation: `.cursor/**`, sensitive operations
+- Private docs not tracked by Git: `docs/private/**`
+
+## Available Commands
+- `/archive-session` - Archive session knowledge
+- `/update-state` - Update state board
+- `/load-context` - Load architecture docs
+- `/review-hooks` - Analyze hooks
+- `/paradigm-init` - Initialize new project
+- `/paradigm-adopt` - Adopt paradigm gradually
+- `/paradigm-sync` - Sync with template updates

@@ -1,0 +1,68 @@
+---
+description: AI-assisted development workflow guidelines
+alwaysApply: false
+---
+
+# AI Workflow
+
+## Session Lifecycle
+
+### Start Phase
+1. **Read `STATE.md`** — Get current phase and recent commit
+2. **Read `handoff.md`** — Resume cross-session tasks
+3. **Load context if needed** — Run `/load-context` for architecture
+
+### Work Phase
+1. **Read standards first** — Before any code change
+2. **Use appropriate mode**:
+   - **Ask**: Understanding code, exploration (read-only)
+   - **Plan**: Complex features, review approach first
+   - **Agent**: Implementation, multi-file edits
+   - **Debug**: Runtime issues, hard-to-reproduce bugs
+3. **Small commits** — Single responsibility, conventional format
+
+### End Phase
+1. **Run `/update-state`** — Sync state board (every session)
+2. **Run `/archive-session`** — Archive knowledge (milestones/decisions)
+3. **Update `handoff.md`** — Document next priorities
+
+## Mode Selection Guide
+
+| Scenario | Mode | Why |
+|----------|------|-----|
+| "Explain this codebase" | Ask | Read-only exploration |
+| "How should I refactor auth?" | Ask → Plan | Explore then design |
+| "Add Stripe checkout" | Plan → Agent | Complex, multi-step |
+| "Fix this failing test" | Agent | Direct fix |
+| "Why does this bug happen?" | Debug | Runtime analysis |
+
+## SubAgent Usage
+
+Delegate to SubAgents for:
+- **Deep exploration** → `explore-enhanced`
+- **Code verification** → `verifier` (after implementation)
+- **Security audit** → `security-audit` (for auth/security changes)
+- **Knowledge archiving** → `knowledge-archivist` (via `/archive-session`)
+
+## Context Management
+
+### Layer 1: Always Loaded
+- `AGENTS.md`
+- `.cursor/rules/` (Always Apply rules)
+- `STATE.md`
+
+### Layer 2: On-Demand
+- `docs/context/architecture.md`
+- `docs/context/constraints.md`
+- `docs/context/adr/*.md`
+- Load via `/load-context` or `@file`
+
+### Layer 3: External Knowledge
+- `~/Documents/PersonalKnowledge/` (via MCP)
+- Not auto-loaded, query via tools
+
+## Queue Management
+While Agent is working:
+- Press **Enter** to queue next message (waits for current)
+- Press **Cmd+Enter** to send immediately (interrupts current)
+- Drag queued messages to reorder

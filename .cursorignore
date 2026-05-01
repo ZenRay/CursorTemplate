@@ -1,0 +1,27 @@
+# Cursor Harness Engineering - 文件硬阻断
+# 此文件中的内容对 AI 完全不可见（最佳努力）
+
+# 敏感文件和环境变量
+.env*
+**/.env.*
+.env.local
+.env.production
+
+# 凭证和密钥
+**/.ssh/
+**/.aws/
+credentials.json
+secrets.json
+*.pem
+*.key
+
+# Cursor 自身配置（避免循环索引）
+.cursor/notes/
+.cursor/logs/
+
+# 私有文档
+docs/private/
+
+# 依赖
+node_modules/
+__pycache__/

@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": ".cursor/hooks/prompt-guard.sh",
+        "timeout": 5
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": ".cursor/hooks/security-gate.sh",
+        "matcher": "rm|chmod|sudo|DROP|TRUNCATE|mkfs",
+        "failClosed": true,
+        "timeout": 10
+      }
+    ],
+    "afterFileEdit": [
+      {
+        "command": ".cursor/hooks/auto-lint.sh",
+        "timeout": 30
+      }
+    ],
+    "postToolUseFailure": [
+      {
+        "command": ".cursor/hooks/log-failure.sh",
+        "timeout": 10
+      }
+    ],
+    "stop": [
+      {
+        "command": ".cursor/hooks/notify-done.sh",
+        "timeout": 5
+      }
+    ],
+    "preCompact": [
+      {
+        "command": ".cursor/hooks/knowledge-trigger.sh",
+        "timeout": 10
+      }
+    ]
+  }
+}

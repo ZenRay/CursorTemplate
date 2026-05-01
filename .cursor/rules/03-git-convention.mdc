@@ -1,0 +1,59 @@
+---
+description: Git commit and workflow conventions
+globs: "**/*"
+alwaysApply: false
+---
+
+# Git Conventions
+
+## Commit Message Format
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+### Types
+| Type | Use For |
+|------|---------|
+| `feat` | New feature |
+| `fix` | Bug fix |
+| `docs` | Documentation only |
+| `style` | Formatting (no code change) |
+| `refactor` | Code change (neither fix nor feature) |
+| `test` | Adding tests |
+| `chore` | Build/config/tooling changes |
+
+### Examples
+```
+feat(auth): implement JWT-based authentication
+
+fix(api): resolve race condition in user lookup
+
+docs(readme): update installation instructions
+
+refactor(utils): extract date formatting to helper
+```
+
+## Branch Strategy
+- `main` / `master`: Production-ready code
+- `feat/*`: Feature branches
+- `fix/*`: Bug fix branches
+- `refactor/*`: Refactoring branches
+
+## Workflow
+1. Start task → Read `docs/private/state/wip.md`
+2. Code changes → Follow `02-code-style.mdc`
+3. Before commit → Run `git status` + `git diff`
+4. Commit message → Follow convention above
+5. Before push → Ask user confirmation
+6. End session → Run `/update-state`
+
+## Pre-commit Checklist
+- [ ] Lint passes (auto-lint.sh)
+- [ ] No secrets in diff
+- [ ] Commit message follows convention
+- [ ] Related tests updated
