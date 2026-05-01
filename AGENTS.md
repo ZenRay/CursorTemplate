@@ -83,7 +83,7 @@ docs/
 
 STATE.md               # Public status board
 AGENTS.md              # This file
-instructions.md        # Quick reference
+.cursor/README.md      # Quick reference
 ```
 
 ---
