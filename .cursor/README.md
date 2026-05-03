@@ -44,6 +44,7 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 | `/cloud-agent` | 启动云后台代理 |
 | `/parallel-agents` | 并行多代理执行 |
 | `/memory-manage` | 管理原生记忆 |
+| `/worktree-manage` | Git 工作树管理 |
 
 ### 3. 会话工作流
 
@@ -232,6 +233,25 @@ instructions.md             # 快速参考 (已弃用，迁移到本文件)
 ```
 
 跨会话持久化项目知识，与 KnowledgeExtractor Skill 互补。
+
+#### Worktree Management (`/worktree-manage`)
+
+Git 工作树管理，支持并行开发：
+
+```
+/worktree-manage list              → 查看所有工作树
+/worktree-manage create feature/x   → 创建新工作树
+/worktree-manage sync feature/x     → 同步基础分支
+/worktree-manage finish feature/x   → 完成并清理
+```
+
+应用场景：
+- **热修复并行**：紧急修复 bug，不中断当前开发
+- **代码审查**：完整 IDE 体验审查 PR
+- **技术预研**：实验性重构，失败可随时丢弃
+- **多版本维护**：同时支持 v1.x、v2.x、v3-dev
+
+与 Parallel Agents 的 worktree 自动集成。
 
 **与 KnowledgeExtractor Skill 的关系：**
 
