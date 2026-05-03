@@ -10,7 +10,7 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 
 - **安全门禁** — 6 个 Hooks 拦截危险操作
 - **行为规范** — 8 层 Rules 控制 AI 行为
-- **任务编排** — 17 个 Commands 标准化工作流
+- **任务编排** — 18 个 Commands 标准化工作流
 - **专项代理** — 8 个 SubAgents 处理复杂任务
 - **技能复用** — 5 个 Skills 封装最佳实践
 - **可视化** — Canvas /diagram 生成架构图
@@ -46,6 +46,7 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 | `/memory-manage` | 管理原生记忆 |
 | `/worktree-manage` | Git 工作树管理 |
 | `/tdd-workflow` | TDD 测试驱动开发 |
+| `/verify-init` | 验证初始化清洁度 |
 
 ### 3. 会话工作流
 
@@ -73,7 +74,7 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 │   ├── api-reviewer.md
 │   ├── refactor-advisor.md
 │   └── bugbot-assistant.md
-├── commands/               # 斜杠命令 (17个)
+├── commands/               # 斜杠命令 (18个)
 │   ├── archive-session.md
 │   ├── update-state.md
 │   ├── load-context.md
@@ -92,7 +93,9 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 │   ├── parallel-agents.md    # V0.6: 并行代理
 │   ├── memory-manage.md      # V0.6: 原生记忆
 │   ├── worktree-manage.md    # V0.6: 工作树管理
-│   └── tdd-workflow.md       # V0.6: TDD 工作流
+│   ├── tdd-workflow.md       # V0.6: TDD 工作流
+│   ├── paradigm-init.md      # 项目初始化（带排除列表）
+│   └── verify-init.md        # 验证初始化清洁度
 ├── hooks/                  # 生命周期脚本 (6个)
 │   ├── security-gate.sh      # T1: 安全拦截
 │   ├── prompt-guard.sh       # T1: 注入防护
