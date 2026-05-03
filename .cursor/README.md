@@ -62,15 +62,16 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 ├── README.md               # 本文件
 ├── hooks.json              # Hooks 事件配置
 ├── mcp.json                # MCP 服务器配置
-├── agents/                 # SubAgents (7个)
+├── agents/                 # SubAgents (8个)
 │   ├── explore-enhanced.md
 │   ├── verifier.md
 │   ├── security-audit.md
 │   ├── knowledge-archivist.md
 │   ├── doc-generator.md
 │   ├── api-reviewer.md
-│   └── refactor-advisor.md
-├── commands/               # 斜杠命令 (11个)
+│   ├── refactor-advisor.md
+│   └── bugbot-assistant.md
+├── commands/               # 斜杠命令 (15个)
 │   ├── archive-session.md
 │   ├── update-state.md
 │   ├── load-context.md
@@ -81,7 +82,13 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 │   ├── performance-check.md
 │   ├── deps-check.md
 │   ├── test-coverage.md
-│   └── git-cleanup.md
+│   ├── git-cleanup.md
+│   ├── visualize.md          # V0.6: Canvas 可视化
+│   ├── diagram.md            # V0.6: 代码关系图
+│   ├── pr-review.md          # V0.6: PR 审查
+│   ├── cloud-agent.md        # V0.6: 云代理
+│   ├── parallel-agents.md    # V0.6: 并行代理
+│   └── memory-manage.md      # V0.6: 原生记忆
 ├── hooks/                  # 生命周期脚本 (6个)
 │   ├── security-gate.sh      # T1: 安全拦截
 │   ├── prompt-guard.sh       # T1: 注入防护
@@ -98,11 +105,12 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 │   ├── 05-workflow.mdc         # Agent
 │   ├── 06-migration-guide.mdc  # Manual
 │   └── 07-security-practices.mdc # Manual
-├── skills/                 # 技能 (4个)
+├── skills/                 # 技能 (5个)
 │   ├── knowledge-extractor/
 │   ├── code-review/
 │   ├── test-generator/
-│   └── pr-review/
+│   ├── pr-review/
+│   └── memory-sync/          # V0.6: 记忆同步
 ├── notes/                  # 会话草稿 (私有)
 └── logs/                   # 运行日志 (私有)
 
@@ -163,6 +171,68 @@ instructions.md             # 快速参考 (已弃用，迁移到本文件)
 | `@refactor-advisor` | `readonly` | 重构建议 |
 | `@bugbot-assistant` | `readonly` | Bugbot 审查协助 |
 
+### V0.6 新增功能
+
+#### Canvas 可视化 (`/visualize`, `/diagram`)
+
+生成架构图和代码关系图：
+
+```
+/visualize architecture  → 生成系统架构图
+/diagram class User      → 生成 User 类图
+/diagram flow auth       → 生成认证流程图
+```
+
+支持 Mermaid 格式，可导出为图片或保存到 `docs/canvas/`。
+
+#### Bugbot PR 集成 (`/pr-review`)
+
+自动化 PR 审查：
+
+```
+/pr-review              → 手动触发 Bugbot 审查
+/pr-review status       → 查看审查状态
+```
+
+自动检测安全漏洞、潜在 Bug、代码风格问题。
+
+#### Cloud/Background Agents (`/cloud-agent`)
+
+后台长时间运行任务：
+
+```
+/cloud-agent launch "重构数据库层" --branch feature/db-refactor
+/cloud-agent list       → 查看运行中的代理
+/cloud-agent status ca-1 → 检查状态
+```
+
+适合 30+ 分钟的任务，不阻塞本地 IDE。
+
+#### Parallel Agents (`/parallel-agents`)
+
+并行执行最多 8 个代理：
+
+```
+/parallel-agents launch
+1. "实现登录页"
+2. "实现注册页"
+3. "实现密码重置"
+```
+
+每个代理在独立 worktree 中运行，互不干扰。
+
+#### Native Memories (`/memory-manage`)
+
+管理 Cursor 原生记忆：
+
+```
+/memory-manage list     → 查看已保存的记忆
+/memory-manage add      → 添加新记忆
+/memory-manage search auth → 搜索记忆
+```
+
+跨会话持久化项目知识，与 KnowledgeExtractor Skill 互补。
+
 ---
 
 ## 使用指南
@@ -200,7 +270,25 @@ Shift + Tab — 循环切换模式 (Ask → Plan → Agent → Debug)
 /load-context adr       → 加载所有 ADR
 /review-hooks           → 分析 Hooks 配置
 /paradigm-sync          → 同步模板更新
+/cloud-agent launch     → 启动云后台代理
+/parallel-agents launch → 并行执行多代理
+/visualize architecture → 生成架构图
 ```
+
+### Worktree 架构
+
+Cloud/Parallel Agents 使用 Git Worktree 实现隔离：
+
+```
+project/
+├── main/                   # 主工作目录
+└── worktrees/
+    ├── agent-1/            # 登录功能
+    ├── agent-2/            # 注册功能
+    └── agent-3/            # 密码重置
+```
+
+每个代理在独立目录运行，互不干扰，可单独合并或丢弃。
 
 ---
 
