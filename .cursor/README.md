@@ -10,7 +10,7 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 
 - **安全门禁** — 6 个 Hooks 拦截危险操作
 - **行为规范** — 8 层 Rules 控制 AI 行为
-- **任务编排** — 15 个 Commands 标准化工作流
+- **任务编排** — 16 个 Commands 标准化工作流
 - **专项代理** — 8 个 SubAgents 处理复杂任务
 - **技能复用** — 5 个 Skills 封装最佳实践
 - **可视化** — Canvas /diagram 生成架构图
@@ -72,7 +72,7 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 │   ├── api-reviewer.md
 │   ├── refactor-advisor.md
 │   └── bugbot-assistant.md
-├── commands/               # 斜杠命令 (15个)
+├── commands/               # 斜杠命令 (16个)
 │   ├── archive-session.md
 │   ├── update-state.md
 │   ├── load-context.md
@@ -89,7 +89,8 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 │   ├── pr-review.md          # V0.6: PR 审查
 │   ├── cloud-agent.md        # V0.6: 云代理
 │   ├── parallel-agents.md    # V0.6: 并行代理
-│   └── memory-manage.md      # V0.6: 原生记忆
+│   ├── memory-manage.md      # V0.6: 原生记忆
+│   └── worktree-manage.md    # V0.6: 工作树管理
 ├── hooks/                  # 生命周期脚本 (6个)
 │   ├── security-gate.sh      # T1: 安全拦截
 │   ├── prompt-guard.sh       # T1: 注入防护
