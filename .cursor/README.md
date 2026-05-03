@@ -233,6 +233,42 @@ instructions.md             # 快速参考 (已弃用，迁移到本文件)
 
 跨会话持久化项目知识，与 KnowledgeExtractor Skill 互补。
 
+**与 KnowledgeExtractor Skill 的关系：**
+
+| 特性 | Native Memories | KnowledgeExtractor Skill |
+|------|-----------------|-------------------------|
+| **存储位置** | Cursor Settings | `~/Documents/PersonalKnowledge/` |
+| **作用范围** | **单个项目** | **跨项目** |
+| **创建方式** | AI 建议 / 手动添加 | `/archive-session` 命令 |
+| **格式** | 键值对 | Markdown 文档 |
+| **适合存储** | 项目特定事实、当前技术栈 | 通用模式、可复用方案 |
+
+**互补使用决策：**
+
+```
+发现重要知识时：
+
+Q: 这个知识只适用于当前项目吗？
+├── Yes → /memory-manage add (Native)
+└── No  → /archive-session (KnowledgeExtractor)
+
+示例：
+- "本项目使用 Stripe 支付" → Native
+- "Stripe 集成通用模式" → KnowledgeExtractor
+```
+
+**知识流动性：**
+
+```
+开发中 → /memory-manage add → Native Memories (项目积累)
+   │                                    ↓
+   │                              定期筛选通用模式
+   │                                    ↓
+   └── /archive-session ───→ PersonalKnowledge (跨项目复用)
+                                    ↑
+启动新项目 ──→ /memory-manage list + @knowledge-extractor
+```
+
 ---
 
 ## 使用指南
