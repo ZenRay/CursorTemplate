@@ -8,9 +8,9 @@
 
 | Field | Value |
 |-------|-------|
-| Phase | **Initialization** |
+| Phase | **V0.6 Released** |
 | Active Branch | `main` |
-| Next Milestone | Complete project setup, start first task |
+| Next Milestone | V0.7 planning and community feedback |
 | Last Commit | `Init (CursorHarness paradigm)` |
 
 ## In Progress

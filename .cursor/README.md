@@ -10,9 +10,12 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 
 - **安全门禁** — 6 个 Hooks 拦截危险操作
 - **行为规范** — 8 层 Rules 控制 AI 行为
-- **任务编排** — 11 个 Commands 标准化工作流
-- **专项代理** — 7 个 SubAgents 处理复杂任务
-- **技能复用** — 4 个 Skills 封装最佳实践
+- **任务编排** — 15 个 Commands 标准化工作流
+- **专项代理** — 8 个 SubAgents 处理复杂任务
+- **技能复用** — 5 个 Skills 封装最佳实践
+- **可视化** — Canvas /diagram 生成架构图
+- **自动审查** — Bugbot PR 集成
+- **云代理** — Cloud/Parallel Agents 支持
 
 ---
 
@@ -36,6 +39,11 @@ CursorHarness 是一套为 Cursor IDE 设计的工程化范式模板，提供：
 | `/load-context` | 加载架构文档 |
 | `/paradigm-init` | 绿地初始化 |
 | `/paradigm-adopt` | 棕地迁移 |
+| `/visualize` | 生成架构可视化图 |
+| `/diagram` | 快速代码关系图 |
+| `/cloud-agent` | 启动云后台代理 |
+| `/parallel-agents` | 并行多代理执行 |
+| `/memory-manage` | 管理原生记忆 |
 
 ### 3. 会话工作流
 
@@ -153,6 +161,7 @@ instructions.md             # 快速参考 (已弃用，迁移到本文件)
 | `@doc-generator` | `readonly` | 文档生成 |
 | `@api-reviewer` | `readonly` | API 设计审查 |
 | `@refactor-advisor` | `readonly` | 重构建议 |
+| `@bugbot-assistant` | `readonly` | Bugbot 审查协助 |
 
 ---
 
@@ -312,4 +321,4 @@ head -5 .cursor/rules/*.mdc
 ---
 
 *CursorHarness Engineering — 结构化 AI 辅助开发范式*
-*版本: V1.0 | 最后更新: 2026-05-02*
+*版本: V0.6 | 最后更新: 2026-05-03*
