@@ -21,6 +21,67 @@ alwaysApply: false
    - **Debug**: Runtime issues, hard-to-reproduce bugs
 3. **Small commits** — Single responsibility, conventional format
 
+## YOLO Mode / Auto-Run Configuration
+
+Settings → Features → Agent → Auto-run terminal commands
+
+### When to Enable Auto-Run
+
+✅ **Enable for**:
+- Well-tested codebases (high coverage)
+- Clear, scoped tasks (< 10 files expected)
+- Type check / Lint auto-fix loops
+- Repetitive boilerplate generation
+
+❌ **Disable for**:
+- Architecture-level changes
+- Database migrations
+- Production configuration edits
+- Untested legacy code
+
+### Safety Settings
+
+```json
+{
+  "agent": {
+    "autoRun": true,
+    "allowFileDeletion": false,  // ⚠️ Keep OFF
+    "maxRetries": 3,
+    "timeoutMinutes": 5
+  }
+}
+```
+
+**Critical**: Keep `allowFileDeletion: false` to prevent accidental data loss.
+
+### YOLO Mode Risks
+
+| Risk | Mitigation |
+|------|------------|
+| Infinite fix loop | Set maxRetries: 3 |
+| Unexpected behavior changes | Require test coverage |
+| Resource waste | Set timeoutMinutes: 5 |
+| Destructive operations | Keep allowFileDeletion: false |
+
+### Best Practice
+
+Use YOLO for **inner loop** (code→test→fix), manual review for **outer loop** (commit→push).
+
+## Checkpoint Rules (For Long Tasks)
+
+Add to `.cursorrules` or project rules:
+
+```
+## Checkpoints
+- After every 5 file writes, run `npm run typecheck` and fix errors
+- Before database migrations, output SQL and wait for approval
+- If a command fails 3 times in a row, stop and explain why
+```
+
+This prevents Agent from silently continuing with broken state.
+
+---
+
 ### End Phase
 1. **Run `/update-state`** — Sync state board (every session)
 2. **Run `/archive-session`** — Archive knowledge (milestones/decisions)
